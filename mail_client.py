@@ -32,25 +32,54 @@ def send_mail(recipient: str, sender: str, subject: str, body: str) -> bool:
     pprint.pprint(response.json())
 
 def get_inbox(recipient: str) -> None:
-    """TODO: fill out this docstring (using the send_mail docstring as a guide)
+    """
+    Gets all the mails currently stored on the server for a given recipient.
+
+    Args: 
+        recipient (str): the recipient of the mail whose inbox's mails we want to get.
+
+    Returns: 
+        None: The function does not return a value. It sends get request to the server at the endpoint and pretty prints the JSON response which contains a list of mails for the specified recepient.
     """
     response = requests.get(f'{SERVER}/mail/inbox/{recipient}')
     pprint.pprint(response.json())
 
 def get_sent(sender: str) -> None:
-    """TODO: fill out this docstring (using the send_mail docstring as a guide)
+    """
+    Gets all the mails that were previously send by a specified sender. 
+
+    Args: 
+        sender (str): the sender of the mail whose sent mails we want to get.
+
+    Returns: 
+        None: The function does not return a value. It sends a get request to the server at the endpoint and pretty prints the JSON response which contains a list of the sent mails for the specified sender. 
     """
     response = requests.get(f'{SERVER}/mail/sent/{sender}')
     pprint.pprint(response.json())
 
 def get_mail(mail_id: str) -> None:
-    """TODO: fill out this docstring (using the send_mail docstring as a guide)
+    """
+    Gets the details of a specific mail by using its unqiue mail id. 
+
+    Args: 
+        mail_id (str): The unique identifier that is assigned to the mail.
+
+    Returns: 
+        None: The function does not return a value. It sends a get request to the server at the specified endpoint and pretty prints the JSON response which contains the fields of the email (recipient, sender, subject, body)
     """
     response = requests.get(f'{SERVER}/mail/{mail_id}')
     pprint.pprint(response.json())
 
 def delete_mail(mail_id: str) -> None:
-    """TODO: fill out this docstring (using the send_mail docstring as a guide)
+    """
+    Deletes a specific mail from the server using its unique mail id.
+
+    Args: 
+        mail_id (str): The unique identifier that is assigned to the mail.
+
+    Returns: 
+        None: The function does not return a value. It sends a get request to the server at the sp
+ecified endpoint and pretty prints the JSON response which contains a response message /confirmation message if the deletion was successful or not. 
     """
     response = requests.delete(f'{SERVER}/mail/{mail_id}')
     pprint.pprint(response.json())
